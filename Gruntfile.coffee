@@ -1,12 +1,16 @@
 module.exports = (grunt) ->
   grunt.loadNpmTasks("grunt-sass")
+  grunt.loadNpmTasks("grunt-webpack")
   grunt.loadNpmTasks("grunt-contrib-watch")
+  grunt.loadNpmTasks("grunt-contrib-copy")
 
-  APP_DIR = '.'
-  TMP_DIR = '.'
-  DEV_DIR = '.'
-  DST_DIR = '.'
-  NPM_DIR   = 'node_modules'
+  APP_DIR = 'app'
+  TMP_DIR = 'app/temp'
+  DEV_DIR = 'app/public'
+  DST_DIR = 'dst'
+  NPM_DIR = 'node_modules'
+
+  webpackConfig = require("./webpack.config")
 
 
   grunt.initConfig
@@ -15,11 +19,19 @@ module.exports = (grunt) ->
       app:
         options:
             includePaths: [
-              "#{APP_DIR}"
+              "#{APP_DIR}/styles"
               "#{NPM_DIR}/uikit/src/scss"
             ]
         files:
-            "#{DEV_DIR}/style.css": "#{APP_DIR}/style.sass"
+            "#{DEV_DIR}/style.css": "#{APP_DIR}/styles/style.sass"
+
+    webpack:
+      #options:
+      #  stats: !process.env.NODE_ENV or process.env.NODE_ENV == 'development'
+      
+      app: webpackConfig,
+      #dev: Object.assign({ watch: true }, webpackConfig)
+        
 
     watch:
       sass:
@@ -29,4 +41,4 @@ module.exports = (grunt) ->
           spawn: no
           livereload: yes
 
-  grunt.registerTask "default", ["sass"]
+  grunt.registerTask "default", ["sass", "watch"]

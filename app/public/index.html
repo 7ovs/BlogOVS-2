@@ -8,8 +8,8 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:700" rel="stylesheet">
     <title>Блог ОВС</title>
     <!-- UIkit CSS -->
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="app.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
 
     <!-- jQuery is required -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -29,7 +29,7 @@
     </style>
 </head>
 
-<body>
+<body ng-app="app">
 
     <div id="offcanvas-nav-primary" uk-offcanvas="overlay: true">
         <div class="uk-offcanvas-bar uk-flex uk-flex-column">
@@ -109,7 +109,8 @@
                 <header class="list-header">
                     <h2>Новости</h2>
                 </header>
-                <ul class="uk-list ovs-list uk-list-divider uk-margin-left uk-margin-right">
+                <app></app>
+<!--                 <ul class="uk-list ovs-list uk-list-divider uk-margin-left uk-margin-right">
                     <li>
                         <article class="uk-article">
                             <p class="uk-article-meta uk-text-right">4 июля 2017</p>
@@ -128,7 +129,7 @@
                             <p>Aenean lacinia bibendum nulla sed consectetur. Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
                         </article>
                     </li>
-                </ul>
+                </ul> -->
             </li>
         </ul>
 
@@ -145,6 +146,7 @@
             </li>
         </ul>
     </div>
+    <script src="app.js"></script>
 
 </body>
 
